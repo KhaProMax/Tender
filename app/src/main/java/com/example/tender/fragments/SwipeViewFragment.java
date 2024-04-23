@@ -1,101 +1,80 @@
 package com.example.tender.fragments;
 
-import android.content.Context;
-import android.graphics.Point;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mindorks.placeholderview.SwipeDecor;
-import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.example.tender.R;
-//import com.example.tender.Utils;
-//import com.example.tender.Profile;
-//import com.example.tender.TinderCard;
+import com.example.tender.activities.FilterActivity;
+import com.example.tender.activities.SplashscreenActivity;
+import com.example.tender.adapters.CardStackAdapter;
+import com.example.tender.models.CardItem;
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
+import com.yuyakaido.android.cardstackview.CardStackView;
+import com.yuyakaido.android.cardstackview.StackFrom;
+import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class SwipeViewFragment extends Fragment {
 
-
-    private View rootLayout;
-    private FloatingActionButton fabBack, fabLike, fabSkip, fabSuperLike, fabBoost;
-
-    private SwipePlaceHolderView mSwipeView;
-    private Context mContext;
-
-    public SwipeViewFragment() {
-        // Required empty public constructor
-    }
-
-
+    private CardStackView cardStackView;
+    private Button filterButton;
+    View rootLayout;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootLayout = inflater.inflate(R.layout.fragment_swipe_view, container, false);
 
-        return rootLayout;
-    }
+        filterButton = rootLayout.findViewById(R.id.filterBtn);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start EditActivity when the edit button is clicked
+                Intent intent = new Intent(getActivity(), FilterActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        return rootLayout;
+
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mSwipeView = view.findViewById(R.id.swipeView);
-        fabBack = view.findViewById(R.id.fabBack);
-        fabLike = view.findViewById(R.id.fabLike);
-        fabSkip = view.findViewById(R.id.fabSkip);
-        fabSuperLike = view.findViewById(R.id.fabSuperLike);
-        fabBoost = view.findViewById(R.id.fabBoost);
-
-
-        mContext = getActivity();
-
-        int bottomMargin = Utils.dpToPx(100);
-        Point windowSize = Utils.getDisplaySize(getActivity().getWindowManager());
-        mSwipeView.getBuilder()
-                .setDisplayViewCount(3)
-                .setSwipeDecor(new SwipeDecor()
-                        .setViewWidth(windowSize.x)
-                        .setViewHeight(windowSize.y - bottomMargin)
-                        .setViewGravity(Gravity.TOP)
-                        .setPaddingTop(20)
-                        .setRelativeScale(0.01f)
-                        .setSwipeInMsgLayoutId(R.layout.tinder_swipe_in_msg_view)
-                        .setSwipeOutMsgLayoutId(R.layout.tinder_swipe_out_msg_view));
-
-
-        for(Profile profile : Utils.loadProfiles(getActivity())){
-            mSwipeView.addView(new TinderCard(mContext, profile, mSwipeView));
-        }
-
-        fabSkip.setOnClickListener(v -> {
-            animateFab(fabSkip);
-            mSwipeView.doSwipe(false);
-        });
-
-        fabLike.setOnClickListener(v -> {
-            animateFab(fabLike);
-            mSwipeView.doSwipe(true);
-        });
-
-        fabBoost.setOnClickListener(v -> animateFab(fabBoost));
-        fabSuperLike.setOnClickListener(v -> animateFab(fabSuperLike));
-        fabBack.setOnClickListener(v -> animateFab(fabBack));
+        cardStackView = view.findViewById(R.id.card_stack_view);
+        setupCardStackView();
     }
 
-
-    private void animateFab(final FloatingActionButton fab){
-        fab.animate().scaleX(0.7f).setDuration(100).withEndAction(() -> fab.animate().scaleX(1f).scaleY(1f));
+    private void setupCardStackView() {
+        CardStackLayoutManager layoutManager = new CardStackLayoutManager(requireContext());
+        layoutManager.setStackFrom(StackFrom.Bottom);
+        layoutManager.setVisibleCount(3);
+        layoutManager.setSwipeableMethod(SwipeableMethod.Manual);
+        cardStackView.setLayoutManager(layoutManager);
+        List<CardItem> items = createCardItems();
+        CardStackAdapter adapter = new CardStackAdapter(items);
+        cardStackView.setAdapter(adapter);
     }
 
+    private List<CardItem> createCardItems() {
+        List<CardItem> items = new ArrayList<>();
+        // Add your card items here
+        items.add(new CardItem("Title 1", "Description 1", R.drawable.cat2));
+        items.add(new CardItem("Title 2", "Description 2", R.drawable.cat1));
+        items.add(new CardItem("Title 3", "Description 3", R.drawable.cat2));
+        items.add(new CardItem("Title 4", "Description 4", R.drawable.cat3));
+        items.add(new CardItem("Title 5", "Description 5", R.drawable.cat4));
+        items.add(new CardItem("Title 6", "Description 6", R.drawable.cat4));
+        items.add(new CardItem("Title 7", "Description 7", R.drawable.cat1));
+        return items;
+    }
 }

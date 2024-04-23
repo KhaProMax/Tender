@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.thecode.tinderclone.widgets.BounceScrollView xmlns:tools="http://schemas.android.com/tools"
+<com.example.tender.widgets.BounceScrollView xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +34,7 @@
                 android:id="@+id/edit_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Rechercher un Match"
+                android:hint="Find"
                 android:padding="10dp"
                 android:inputType="phone"
                 android:textSize="18sp"
@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nouveaux Matchs"
+            android:text="Recent Matchs"
             android:textStyle="bold"
             android:layout_margin="20dp"
             android:textColor="@color/colorPrimary"/>
@@ -111,4 +111,4 @@
 
     </LinearLayout>
 
-</com.thecode.tinderclone.widgets.BounceScrollView>
+</com.example.tender.widgets.BounceScrollView>

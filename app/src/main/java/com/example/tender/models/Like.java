@@ -6,7 +6,6 @@ public class Like {
     private String name;
     private int picture;
 
-
     public Like(int id, String name, int picture) {
         this.id = id;
         this.name = name;

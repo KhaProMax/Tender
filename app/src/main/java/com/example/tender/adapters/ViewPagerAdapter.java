@@ -7,10 +7,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import java.util.List;
 
 
-/**
- * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
- * sequence.
- */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> fragmentList;

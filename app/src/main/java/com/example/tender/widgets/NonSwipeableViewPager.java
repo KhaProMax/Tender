@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2019. Variance technologies. All rights reserved.
- * Created By TEKOMBO Gabriel <tekombo.gabriel@gmail.com> on 07/10/19 13:42.
- */
-
 package com.example.tender.widgets;
 
 import android.content.Context;

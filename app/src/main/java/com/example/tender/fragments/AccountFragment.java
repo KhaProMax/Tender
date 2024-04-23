@@ -1,27 +1,32 @@
 package com.example.tender.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
-import com.thecode.tinderclone.R;
-import com.thecode.tinderclone.adapters.SliderAdapter;
+//import com.smarteist.autoimageslider.IndicatorAnimations;
+//import com.smarteist.autoimageslider.SliderAnimations;
+//import com.smarteist.autoimageslider.SliderView;
+import com.example.tender.R;
+import com.example.tender.activities.EditProfileActivity;
+import com.example.tender.activities.SplashscreenActivity;
+//import com.thecode.tinderclone.adapters.SliderAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AccountFragment extends Fragment {
 
-
+    private ImageButton editBtn;
     View rootLayout;
-    private SliderView sliderView;
+//    private SliderView sliderView;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -34,17 +39,15 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         rootLayout = inflater.inflate(R.layout.fragment_account, container, false);
 
-
-        sliderView = rootLayout.findViewById(R.id.slider_view);
-
-        final SliderAdapter adapter = new SliderAdapter(getActivity());
-
-        sliderView.setSliderAdapter(adapter);
-
-        sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_RIGHT);
-        sliderView.startAutoCycle();
+        editBtn = rootLayout.findViewById(R.id.edit_button);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start EditActivity when the edit button is clicked
+                Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootLayout;
     }

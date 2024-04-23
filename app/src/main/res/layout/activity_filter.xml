@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:id="@+id/return_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/ic_arrow_left"
+            android:contentDescription="Return" />
+
+        <!-- Title "Filter" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discovery Settings"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/md_black_1000"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
+    <!-- Maximum distance input with slider -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maximum Distance" />
+
+    <SeekBar
+        android:id="@+id/distance_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <!-- Age range input with slider -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Age Range" />
+
+    <!-- Minimum number of photos input with slider -->
+    <SeekBar
+        android:id="@+id/age_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minimum Number of Photos" />
+
+    <SeekBar
+        android:id="@+id/photo_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <!-- Language dropdown select -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Language" />
+
+    <Spinner
+        android:id="@+id/language_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Education dropdown select -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Education" />
+
+    <Spinner
+        android:id="@+id/education_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

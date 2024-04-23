@@ -7,14 +7,75 @@
     android:layout_height="match_parent"
     android:background="@color/whiteGray">
 
+    <LinearLayout
+        android:id="@+id/top_nav"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tinder_logo" />
+
+        <TextView
+            android:paddingTop="11dp"
+            android:paddingLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tender"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:textColor="@color/md_red_700"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/filterBtn"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:drawableStart="@drawable/icon_filter_gray"
+            android:drawablePadding="8dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/swipe_automatic_group"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:backgroundTint="@android:color/white"
+                android:clickable="true"
+                android:focusable="true"
+                app:borderWidth="0dp"
+                app:fabSize="normal"
+                app:rippleColor="@null"
+                app:srcCompat="@drawable/skip" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -35,47 +96,6 @@
                 app:borderWidth="0dp"
                 app:srcCompat="@drawable/reverse"/>
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabSkip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="@android:color/white"
-                app:fabSize="normal"
-                app:rippleColor="@null"
-                app:borderWidth="0dp"
-                app:srcCompat="@drawable/skip"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabSuperLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="@android:color/white"
-                app:fabSize="mini"
-                app:rippleColor="@null"
-                app:borderWidth="0dp"
-                app:srcCompat="@drawable/ic_star_turquoise_24dp"/>
 
         </RelativeLayout>
 
@@ -96,39 +116,18 @@
                 app:fabSize="normal"
                 app:rippleColor="@null"
                 app:borderWidth="0dp"
-                app:srcCompat="@drawable/ic_like_24dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabBoost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="@android:color/white"
-                app:fabSize="mini"
-                app:rippleColor="@null"
-                app:borderWidth="0dp"
-                app:srcCompat="@drawable/bolt"/>
+                android:tint="@android:color/holo_blue_bright"
+                app:srcCompat="@drawable/ic_like_24dp" />
 
         </RelativeLayout>
 
 
     </LinearLayout>
 
-    <com.mindorks.placeholderview.SwipePlaceHolderView
-        android:id="@+id/swipeView"
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/card_stack_view"
+        android:layout_above="@id/swipe_automatic_group"
+        android:layout_below="@id/top_nav"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="75dp"/>
-
-
+        android:layout_height="match_parent" />
 </RelativeLayout>

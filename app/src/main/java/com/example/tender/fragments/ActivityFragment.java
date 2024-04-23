@@ -1,6 +1,5 @@
 package com.example.tender.fragments;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +11,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.thecode.tinderclone.R;
-import com.thecode.tinderclone.adapters.ViewPagerAdapter;
+import com.example.tender.R;
+import com.example.tender.adapters.ViewPagerAdapter;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ActivityFragment extends Fragment implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
 
@@ -62,18 +58,15 @@ public class ActivityFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.layout_chat:
-                viewPager.setCurrentItem(0);
-                chatText.setTextColor(getResources().getColor(R.color.colorPrimary));
-                feedText.setTextColor(getResources().getColor(R.color.light_gray));
-                break;
-            case R.id.layout_feed:
-                viewPager.setCurrentItem(1);
-                chatText.setTextColor(getResources().getColor(R.color.light_gray));
-                feedText.setTextColor(getResources().getColor(R.color.colorPrimary));
-                break;
 
+        if (view.getId() == R.id.layout_chat) {
+            viewPager.setCurrentItem(0);
+            chatText.setTextColor(getResources().getColor(R.color.colorPrimary));
+            feedText.setTextColor(getResources().getColor(R.color.light_gray));
+        } else if (view.getId() == R.id.layout_feed) {
+            viewPager.setCurrentItem(1);
+            chatText.setTextColor(getResources().getColor(R.color.light_gray));
+            feedText.setTextColor(getResources().getColor(R.color.colorPrimary));
         }
     }
 

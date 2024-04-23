@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tender.R;
 
-public class EmailVerificationActivity extends AppCompatActivity {
-
-    @Override
+public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_email_verification);
+        setContentView(R.layout.activity_authentication);
     }
+
 }

@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.thecode.tinderclone.R;
-import com.thecode.tinderclone.entities.Like;
+//import com.bumptech.glide.Glide;
+import com.example.tender.models.Like;
+import com.example.tender.R;
+import com.example.tender.models.Like;
 
 import java.util.List;
-
 
 public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ContactViewHolder>{
 
@@ -27,7 +27,6 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ContactViewHol
         this.context = context;
         this.likeList = likeList;
     }
-
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -66,9 +65,9 @@ public class LikeAdapter extends RecyclerView.Adapter<LikeAdapter.ContactViewHol
         final Like item = likeList.get(position);
         holder.likeName.setText(item.getName());
 
-        Glide.with(context)
-                .load(item.getPicture())
-                .into(holder.likeImage);
+//        Glide.with(context)
+//                .load(item.getPicture())
+//                .into(holder.likeImage);
     }
 }
 

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/feature"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/buttonBack"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:padding="4dp"
+            android:layout_marginTop="3dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_arrow_left" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:text="@string/edit_profile"
+            android:textSize="23sp"/>
+
+        <ImageButton
+            android:id="@+id/buttonSave"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="6dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/rounded_corner_image_button"
+            android:gravity="start"
+            android:scaleType="fitCenter"
+            android:src="@drawable/save_button" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/media"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feature"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="14dp"
+        android:textSize="16sp"
+        android:text="Media"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/media"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <!-- từ chỗ này nhét vào ... để Scroll -->
+    <TextView
+        android:id="@+id/introduce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_image"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"
+        android:text="@string/gi_i_thi_u_b_n_th_n"/>
+
+    <EditText
+        android:id="@+id/editIntroduce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/introduce"
+        android:gravity="start"
+        android:hint="@string/gi_i_thi_u_b_n_th_n"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="14sp"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/Hobbies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editIntroduce"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"
+        android:text="@string/s_th_ch"/>
+
+    <EditText
+        android:id="@+id/editHobbies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Hobbies"
+        android:gravity="start"
+        android:hint="@string/s_th_ch_c_a_b_n"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="14sp"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/Infor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editHobbies"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"
+        android:text="@string/th_ng_tin_th_m"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:stretchColumns="*"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Infor">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp">
+
+            <TextView
+                android:id="@+id/zodiac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_gravity="start|center"
+                android:text="@string/cung_ho_ng_o" />
+
+            <EditText
+                android:id="@+id/editZodiac"
+                android:layout_width="208dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_span="2"
+                android:ems="8"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor">
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp">
+
+            <TextView
+                android:id="@+id/study"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_gravity="start|center"
+                android:text="@string/h_c_v_n" />
+
+            <EditText
+                android:id="@+id/editStudy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_span="2"
+                android:ems="8"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor">
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp">
+
+            <TextView
+                android:id="@+id/character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_gravity="start|center"
+                android:text="@string/ki_u_t_nh_c_ch" />
+
+            <EditText
+                android:id="@+id/editCharacter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_span="2"
+                android:ems="8"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor">
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp">
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_gravity="start|center"
+                android:text="@string/bi_t_hi_u" />
+
+            <EditText
+                android:id="@+id/editNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_span="2"
+                android:ems="8"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor">
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp">
+
+            <TextView
+                android:id="@+id/living"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_gravity="start|center"
+                android:text="@string/n_i_sinh_s_ng" />
+
+            <EditText
+                android:id="@+id/editLiving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_span="2"
+                android:ems="8"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor">
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp">
+
+            <TextView
+                android:id="@+id/Work"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_gravity="start|center"
+                android:text="@string/ngh_nghi_p" />
+
+            <EditText
+                android:id="@+id/editWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_span="2"
+                android:ems="8"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor">
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

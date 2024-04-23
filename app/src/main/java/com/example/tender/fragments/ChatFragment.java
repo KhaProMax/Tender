@@ -12,20 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.thecode.tinderclone.R;
-import com.thecode.tinderclone.activities.MainActivity;
-import com.thecode.tinderclone.adapters.LikeAdapter;
-import com.thecode.tinderclone.adapters.MessageListAdapter;
-import com.thecode.tinderclone.entities.Like;
-import com.thecode.tinderclone.entities.MessageItem;
+import com.example.tender.R;
+import com.example.tender.activities.MainActivity;
+import com.example.tender.adapters.LikeAdapter;
+import com.example.tender.adapters.MessageListAdapter;
+import com.example.tender.models.Like;
+import com.example.tender.models.MessageItem;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ChatFragment extends Fragment {
 
 
@@ -34,12 +31,12 @@ public class ChatFragment extends Fragment {
     private List<MessageItem> messageList;
     private List<Like> likeList;
     private MessageListAdapter mAdapter;
-    private String[] messages = {"Ah d'accord", "Juste par habitude en tout cas", "Hey!", "6946743263", "Give me your number, I will call you"};
+    private String[] messages = {"How are you?", "What's up?", "Hey!", "Want a date?", "Hello World!"};
     private int[] counts = {0, 3, 0, 0, 1};
     private int[] messagePictures = {R.drawable.user_woman_3, R.drawable.user_woman_4, R.drawable.user_woman_5, R.drawable.user_woman_6 , R.drawable.user_woman_7};
     private int[] likePictures = {R.drawable.user_woman_1, R.drawable.user_woman_2};
-    private String[] messageNames = {"Fanelle", "Chloe", "Cynthia", "Kate", "Angele"};
-    private String[] likeNames = {"Sophie", "Clara"};
+    private String[] messageNames = {"Jessica1", "Jessica2", "Jessica3", "Jessica4", "Jessica5"};
+    private String[] likeNames = {"Jessica1", "Jessica2"};
 
     public ChatFragment() {
         // Required empty public constructor
@@ -59,11 +56,10 @@ public class ChatFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
         recyclerView.setAdapter(mAdapter);
 
         prepareMessageList();
-
 
         prepareContactList();
         LikeAdapter contactAdapter = new LikeAdapter(getContext(), likeList);

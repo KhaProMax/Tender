@@ -12,12 +12,13 @@
     android:clickable="true"
     android:focusable="true">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/circle_image_like"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginBottom="5dp"
-        tools:src="@tools:sample/avatars[4]" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/woman_0" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_like_name"

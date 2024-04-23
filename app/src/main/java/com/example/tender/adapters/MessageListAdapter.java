@@ -54,13 +54,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         holder.name.setText(item.getName());
         holder.content.setText(item.getContent());
 
-        if(item.getCount() <= 0){
-            holder.viewIndicator.setVisibility(View.INVISIBLE);
-        }
-
-//        Glide.with(context)
-//                .load(item.getPicture())
-//                .into(holder.thumbnail);
+        holder.viewIndicator.setVisibility(View.INVISIBLE);
+//        if(item.getCount() <= 0){
+//            holder.viewIndicator.setVisibility(View.INVISIBLE);
+//        }
+        
     }
 
     @Override

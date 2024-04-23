@@ -29,7 +29,6 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.MyVi
             location = view.findViewById(R.id.text_location);
             imgProfile = view.findViewById(R.id.img_profile);
             imgContent = view.findViewById(R.id.img_content);
-
         }
     }
 
@@ -53,14 +52,6 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.MyVi
         holder.name.setText(item.getName());
         holder.date.setText(item.getDate());
         holder.location.setText(item.getLocation());
-
-//        Glide.with(context)
-//                .load(item.getPicture())
-//                .into(holder.imgProfile);
-//
-//        Glide.with(context)
-//                .load(item.getPicture())
-//                .into(holder.imgContent);
     }
 
     @Override

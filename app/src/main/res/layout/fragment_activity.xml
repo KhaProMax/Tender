@@ -5,9 +5,39 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ActivityFragment">
 
+    <LinearLayout
+        android:id="@+id/top_nav"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tinder_logo" />
+
+        <TextView
+            android:paddingTop="11dp"
+            android:paddingLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tender"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:textColor="@color/md_red_700"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_navigation_bar"
+        android:layout_below="@id/top_nav"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/white">
@@ -33,13 +63,13 @@
                 android:layout_marginEnd="5dp"/>
 
 
-            <RelativeLayout
-                android:id="@+id/layout_count_message"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:padding="2dp"
-                android:background="@drawable/dot_message"
-                android:layout_marginBottom="7dp" />
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/layout_count_message"-->
+<!--                android:layout_width="10dp"-->
+<!--                android:layout_height="10dp"-->
+<!--                android:padding="2dp"-->
+<!--                android:background="@drawable/dot_message"-->
+<!--                android:layout_marginBottom="7dp" />-->
 
 
         </LinearLayout>
@@ -64,7 +94,7 @@
                 android:id="@+id/text_feed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fil d'actualité"
+                android:text="News"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/light_gray"

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SignUpActivity"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/gradient">
+
+    <TextView
+        android:id="@+id/Create"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Create your own account"
+        android:textSize="30sp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/Create_tv_user_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        app:layout_constraintTop_toBottomOf="@+id/Create"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Create_et_username"
+        android:layout_marginTop="@dimen/margin_basex4"
+        />
+
+    <EditText
+        android:id="@+id/Create_et_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@gmail.com"
+        app:layout_constraintTop_toTopOf="@+id/Create_tv_user_name"
+        app:layout_constraintStart_toEndOf="@+id/Create_tv_user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/Create_tv_password"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:hint="******"
+        app:layout_constraintTop_toBottomOf="@+id/Create_et_username"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_base"
+        />
+
+    <EditText
+        android:id="@+id/Create_et_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintTop_toTopOf="@+id/Create_tv_password"
+        app:layout_constraintStart_toEndOf="@+id/Create_tv_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/Confirm_password"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Confirm password:"
+        android:hint="******"
+        app:layout_constraintTop_toBottomOf="@+id/Create_et_password"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_base"
+        />
+
+    <EditText
+        android:id="@+id/Confirm_ET_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintTop_toTopOf="@+id/Confirm_password"
+        app:layout_constraintStart_toEndOf="@+id/Confirm_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btn_create_acc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:background="@drawable/btn_background_sign_up"
+        app:layout_constraintTop_toBottomOf="@+id/Confirm_ET_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_base"
+        android:layout_marginBottom="@dimen/margin_base"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
