@@ -55,10 +55,8 @@ public class ActivityFragment extends Fragment implements View.OnClickListener, 
         return rootLayout;
     }
 
-
     @Override
     public void onClick(View view) {
-
         if (view.getId() == R.id.layout_chat) {
             viewPager.setCurrentItem(0);
             chatText.setTextColor(getResources().getColor(R.color.colorPrimary));
