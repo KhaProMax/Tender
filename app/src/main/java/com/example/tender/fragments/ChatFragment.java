@@ -3,29 +3,30 @@ package com.example.tender.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
 
 import com.example.tender.R;
 import com.example.tender.activities.MainActivity;
 import com.example.tender.adapters.LikeAdapter;
 import com.example.tender.adapters.MessageListAdapter;
-import com.example.tender.models.Like;
-import com.example.tender.models.MessageItem;
+import com.example.tender.entities.Like;
+import com.example.tender.entities.MessageItem;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+// Hien thi danh sach cac cuoc tro chuyen
 public class ChatFragment extends Fragment {
-
-
     View rootLayout;
     private static final String TAG = MainActivity.class.getSimpleName();
     private List<MessageItem> messageList;
@@ -51,25 +52,32 @@ public class ChatFragment extends Fragment {
 
         RecyclerView recyclerView = rootLayout.findViewById(R.id.recycler_view_messages);
         messageList = new ArrayList<>();
-        mAdapter = new MessageListAdapter(getContext(), messageList);
+        mAdapter = new MessageListAdapter(this.getContext(), messageList);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerView.setAdapter(mAdapter);
-
         prepareMessageList();
 
         prepareContactList();
+
+        recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnClickListener(new MessageListAdapter.OnClickListener() {
+            @Override
+            public void onClick(int position, MessageItem model) {
+                Log.d("Click", "Click");
+                onChatClick();
+            }
+        });
+
         LikeAdapter contactAdapter = new LikeAdapter(getContext(), likeList);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerViewContact =  rootLayout.findViewById(R.id.recycler_view_likes);
         recyclerViewContact.setLayoutManager(layoutManager);
         recyclerViewContact.setAdapter(contactAdapter);
-        //new HorizontalOverScrollBounceEffectDecorator(new RecyclerViewOverScrollDecorAdapter(recyclerViewContact));
-
 
         return rootLayout;
     }
@@ -97,5 +105,9 @@ public class ChatFragment extends Fragment {
         }
     }
 
-
+    public void onChatClick() {
+        Log.d("TExt","Called");
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_chatListFragment_to_chatBoxFragment);
+    }
 }

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tender.R;
-import com.example.tender.models.Match;
+import com.example.tender.entities.Match;
 
 import androidx.recyclerview.widget.RecyclerView;
 

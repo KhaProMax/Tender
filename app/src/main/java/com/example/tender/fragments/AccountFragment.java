@@ -3,6 +3,7 @@ package com.example.tender.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 //import com.smarteist.autoimageslider.IndicatorAnimations;
 //import com.smarteist.autoimageslider.SliderAnimations;
@@ -25,6 +27,8 @@ import com.example.tender.activities.SplashscreenActivity;
 public class AccountFragment extends Fragment {
 
     private ImageButton editBtn;
+    // For test some funcs, modify this button later
+    private ImageButton uploadBtn;
     View rootLayout;
 //    private SliderView sliderView;
 
@@ -40,12 +44,22 @@ public class AccountFragment extends Fragment {
         rootLayout = inflater.inflate(R.layout.fragment_account, container, false);
 
         editBtn = rootLayout.findViewById(R.id.edit_button);
+        uploadBtn = rootLayout.findViewById(R.id.upload_button);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start EditActivity when the edit button is clicked
                 Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("TExt","Called");
+                NavHostFragment.findNavController(AccountFragment.this)
+                        .navigate(R.id.action_chatListFragment_to_chatBoxFragment);
             }
         });
 

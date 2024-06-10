@@ -1,4 +1,4 @@
-package com.example.tender.models;
+package com.example.tender.entities;
 
 public class MessageItem {
 
@@ -7,7 +7,6 @@ public class MessageItem {
     private String content;
     private int count;
     private int picture;
-
 
     public MessageItem() {
     }
@@ -60,5 +59,3 @@ public class MessageItem {
         this.id = id;
     }
 }
-
-//myImageView.setImageResource(R.drawable.icon);

@@ -56,15 +56,5 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private void sendMessage() {
-//        String messageText = messageEditText.getText().toString().trim();
-//        if (!messageText.isEmpty()) {
-//            String messageId = messagesDatabaseReference.push().getKey();
-//            Message message = new Message(messageText, "senderUserId", System.currentTimeMillis());
-//            messagesDatabaseReference.child(messageId).setValue(message);
-//            messageEditText.setText("");
-//        }
-//    }
 }
 

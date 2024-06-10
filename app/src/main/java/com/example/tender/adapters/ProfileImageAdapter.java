@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tender.models.ProfileImage;
+import com.example.tender.entities.ProfileImage;
 import com.example.tender.R;
 import java.util.List;
 

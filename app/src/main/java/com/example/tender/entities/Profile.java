@@ -1,4 +1,4 @@
-package com.example.tender.models;
+package com.example.tender.entities;
 
 public class Profile {
 

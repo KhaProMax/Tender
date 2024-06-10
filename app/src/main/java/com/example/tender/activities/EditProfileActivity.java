@@ -3,7 +3,6 @@ package com.example.tender.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.EditText;
 import androidx.activity.EdgeToEdge;
@@ -14,15 +13,13 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.tender.adapters.ProfileImageAdapter;
-import com.example.tender.models.ProfileImage;
+import com.example.tender.entities.ProfileImage;
 import com.example.tender.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 public class EditProfileActivity extends AppCompatActivity {
 
