@@ -7,8 +7,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.tender.fragments.AccountNavHostFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.tender.R;
 //import com.example.tender.Utils;
@@ -19,6 +21,10 @@ import com.example.tender.fragments.ChatFragment;
 import com.example.tender.fragments.FeedFragment;
 import com.example.tender.fragments.SwipeViewFragment;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         fragList.add(new SwipeViewFragment());
         fragList.add(new FeedFragment());
         fragList.add(new ChatFragment());
-        fragList.add(new AccountFragment());
+        fragList.add(new AccountNavHostFragment());
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(fragList, getSupportFragmentManager());
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(pagerAdapter);
@@ -61,5 +67,67 @@ public class MainActivity extends AppCompatActivity {
                     return true;
             }
         });
+
+//        Test Firebase DB
+        FirebaseApp.initializeApp(this);
+
+        fetchAndLogUserData();
+    }
+
+    private void fetchAndLogUserData() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = db.collection("user");
+
+        usersRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String userId = document.getId();
+                    Log.d("Firebase", "User ID: " + userId);
+                    logUserCollections(userId);
+                }
+            } else {
+                Log.w("Firebase", "Error getting documents.", task.getException());
+            }
+        });
+    }
+
+    private void logUserCollections(String userId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Fetch user_auth collection
+        db.collection("user").document(userId).collection("user_auth")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Firebase", "user_auth: " + document.getData());
+                        }
+                    } else {
+                        Log.w("Firebase", "Error getting user_auth documents.", task.getException());
+                    }
+                });
+
+        // Fetch user_collection collection
+        db.collection("user").document(userId).collection("user_collection")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Firebase", "user_collection: " + document.getData());
+                        }
+                    } else {
+                        Log.w("Firebase", "Error getting user_collection documents.", task.getException());
+                    }
+                });
+
+        // Fetch user_detail collection
+        db.collection("user").document(userId).collection("user_detail")
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Log.d("Firebase", "user_detail: " + document.getData());
+                        }
+                    } else {
+                        Log.w("Firebase", "Error getting user_detail documents.", task.getException());
+                    }
+                });
     }
 }

@@ -11,9 +11,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
-import com.example.tender.models.Like;
+import com.example.tender.entities.Like;
 import com.example.tender.R;
-import com.example.tender.models.Like;
 
 import java.util.List;
 

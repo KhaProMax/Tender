@@ -214,7 +214,6 @@
                 tools:ignore="LabelFor">
                 <requestFocus />
             </EditText>
-
         </TableRow>
 
         <TableRow

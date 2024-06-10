@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -14,9 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tender.R;
 import com.example.tender.activities.FilterActivity;
-import com.example.tender.activities.SplashscreenActivity;
 import com.example.tender.adapters.CardStackAdapter;
-import com.example.tender.models.CardItem;
+import com.example.tender.entities.CardItem;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.StackFrom;

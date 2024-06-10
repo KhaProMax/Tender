@@ -1,4 +1,4 @@
 package com.example.tender.models;
 
-public class Chat {
+public class Post {
 }

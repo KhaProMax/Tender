@@ -118,7 +118,6 @@
                 app:borderWidth="0dp"
                 android:tint="@android:color/holo_blue_bright"
                 app:srcCompat="@drawable/ic_like_24dp" />
-
         </RelativeLayout>
     </LinearLayout>
 
