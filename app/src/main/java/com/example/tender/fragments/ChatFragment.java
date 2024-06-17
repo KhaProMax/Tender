@@ -32,7 +32,7 @@ public class ChatFragment extends Fragment {
     private List<MessageItem> messageList;
     private List<Like> likeList;
     private MessageListAdapter mAdapter;
-    private String[] messages = {"How are you?", "What's up?", "Hey!", "Want a date?", "Hello World!"};
+    private String[] messages = {"How are you?", "What's up?", "Hey!", "Want SignUpActivity date?", "Hello World!"};
     private int[] counts = {0, 3, 0, 0, 1};
     private int[] messagePictures = {R.drawable.woman_0, R.drawable.woman_0, R.drawable.woman_0, R.drawable.woman_0 , R.drawable.woman_0};
     private int[] likePictures = {R.drawable.woman_0, R.drawable.woman_0};

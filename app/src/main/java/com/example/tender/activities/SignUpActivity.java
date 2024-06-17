@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,10 +13,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 import com.example.tender.R;
+import com.example.tender.models.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
-    private Button signUpBtn;
+
+    private Button btn_sign_up;
+    private EditText ETuser;
+    private EditText ETpass;
+    private EditText ETconfirmPass;
+    FirebaseDatabase Db;
+    DatabaseReference databaseRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,20 +38,46 @@ public class SignUpActivity extends AppCompatActivity {
             return insets;
         });
 
-        signUpBtn = findViewById(R.id.btn_create_acc);
 
-        // Set click listener for the sign up button
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
+        btn_sign_up = findViewById(R.id.btn_create_acc);
+        ETuser=findViewById(R.id.Create_et_username);
+        ETpass=findViewById(R.id.Create_et_password);
+        ETconfirmPass=findViewById(R.id.Confirm_ET_password);
+
+        btn_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create an Intent to start the MainActivity
-                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                Db=FirebaseDatabase.getInstance();
+                databaseRef=Db.getReference("User");
+                String username=ETuser.getText().toString();
+                String password=ETpass.getText().toString();
+                String confirmPass=ETconfirmPass.getText().toString();
+                // if any of the field is empty
+                if(username.isEmpty() || password.isEmpty() || confirmPass.isEmpty())
+                {
+                    Toast.makeText( SignUpActivity.this, "Fill all fields", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // if create is successful
+                else if (password.equals(confirmPass))
+                {
+                    User user= new User(username,password);
+                    databaseRef.child(username).setValue(user);
 
-                // Start the MainActivity
-                startActivity(intent);
+                    Toast.makeText(SignUpActivity.this, "You have signup successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(SignUpActivity.this, "Password not the same", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
             }
         });
-    }
 
+
+    }
 
 }

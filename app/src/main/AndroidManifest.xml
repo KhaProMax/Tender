@@ -21,11 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SignInActivity"></activity>
         <activity android:name=".activities.SignUpActivity"></activity>
+        <activity android:name=".activities.SignInActivity"></activity>
         <activity android:name=".activities.MainActivity"></activity>
         <activity android:name=".activities.FilterActivity"></activity>
         <activity android:name=".activities.EditProfileActivity"></activity>
+        <activity android:name=".activities.Upload_Image"></activity>
+
     </application>
 
 </manifest>
