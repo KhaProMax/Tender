@@ -60,6 +60,11 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
     implementation("com.google.firebase:firebase-storage:20.0.0")
 
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("androidx.core:core-ktx:1.9.0")
+    implementation ("com.google.code.gson:gson:2.8.7")
+
     implementation(libs.firebase.database)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)

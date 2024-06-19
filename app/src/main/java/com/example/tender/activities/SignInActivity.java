@@ -1,33 +1,16 @@
 package com.example.tender.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.developer.gbuttons.GoogleSignInButton;
 import com.example.tender.R;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,20 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import kotlin.Unit;
-
 public class SignInActivity extends AppCompatActivity {
-    private Button signUpBtn;
-    private Button signInBtn;
     private EditText etUser;
     private EditText etPass;
     GoogleSignInButton btnGoogle;
-    GoogleSignInOptions optGoogle;
-    GoogleSignInClient clientGoogle;
-    FirebaseDatabase Db;
-    DatabaseReference databaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,29 +30,23 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
 
-        signUpBtn = findViewById(R.id.btn_signup);
-        signInBtn = findViewById(R.id.btn_sign_in);
+        Button signUpBtn = findViewById(R.id.btn_signup);
+        Button signInBtn = findViewById(R.id.btn_sign_in);
         etUser = findViewById(R.id.et_username);
         etPass = findViewById(R.id.et_password);
         btnGoogle = findViewById(R.id.btn_google);
 
         // Set click listener for the sign up button
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an Intent to start the SignUpActivity
-                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
+        signUpBtn.setOnClickListener(v -> {
+            // Create an Intent to start the SignUpActivity
+            Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+            startActivity(intent);
         });
 
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!validateUsername() | !validatePassword()) {
-                } else {
-                    getUser();
-                }
+        signInBtn.setOnClickListener(v -> {
+            if (!validateUsername() | !validatePassword()) {
+            } else {
+                getUser();
             }
         });
 
@@ -128,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
                         String nameFromDB = snapshot.child(user).child("name").getValue(String.class);
                         String emailFromDB = snapshot.child(user).child("email").getValue(String.class);
                         String usernameFromDB = snapshot.child(user).child("username").getValue(String.class);
-                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                        Intent intent = new Intent(SignInActivity.this, UploadImage.class);
                         intent.putExtra("name", nameFromDB);
                         intent.putExtra("email", emailFromDB);
                         intent.putExtra("username", usernameFromDB);

@@ -26,7 +26,7 @@
         <activity android:name=".activities.MainActivity"></activity>
         <activity android:name=".activities.FilterActivity"></activity>
         <activity android:name=".activities.EditProfileActivity"></activity>
-        <activity android:name=".activities.Upload_Image"></activity>
+        <activity android:name=".activities.UploadImage"></activity>
 
     </application>
 
