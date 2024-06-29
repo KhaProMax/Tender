@@ -13,11 +13,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-
 import com.example.tender.R;
 import com.example.tender.models.User;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -25,8 +24,8 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText ETuser;
     private EditText ETpass;
     private EditText ETconfirmPass;
-    FirebaseDatabase Db;
-    DatabaseReference databaseRef;
+    FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,46 +37,43 @@ public class SignUpActivity extends AppCompatActivity {
             return insets;
         });
 
-
         btn_sign_up = findViewById(R.id.btn_create_acc);
-        ETuser=findViewById(R.id.Create_et_username);
-        ETpass=findViewById(R.id.Create_et_password);
-        ETconfirmPass=findViewById(R.id.Confirm_ET_password);
+        ETuser = findViewById(R.id.Create_et_username);
+        ETpass = findViewById(R.id.Create_et_password);
+        ETconfirmPass = findViewById(R.id.Confirm_ET_password);
+
+        db = FirebaseFirestore.getInstance();
 
         btn_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Db=FirebaseDatabase.getInstance();
-                databaseRef=Db.getReference("User");
-                String username=ETuser.getText().toString();
-                String password=ETpass.getText().toString();
-                String confirmPass=ETconfirmPass.getText().toString();
+                String username = ETuser.getText().toString();
+                String password = ETpass.getText().toString();
+                String confirmPass = ETconfirmPass.getText().toString();
+
                 // if any of the field is empty
-                if(username.isEmpty() || password.isEmpty() || confirmPass.isEmpty())
-                {
-                    Toast.makeText( SignUpActivity.this, "Fill all fields", Toast.LENGTH_LONG).show();
+                if (username.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "Fill all fields", Toast.LENGTH_LONG).show();
                     return;
                 }
                 // if create is successful
-                else if (password.equals(confirmPass))
-                {
-                    User user= new User(username,password);
-                    databaseRef.child(username).setValue(user);
-
-                    Toast.makeText(SignUpActivity.this, "You have signup successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                    startActivity(intent);
-                }
-                else
-                {
-                    Toast.makeText(SignUpActivity.this, "Password not the same", Toast.LENGTH_SHORT).show();
+                else if (password.equals(confirmPass)) {
+                    User user = new User(username, password);
+                    DocumentReference userRef = db.collection("users").document(username);
+                    userRef.set(user)
+                            .addOnSuccessListener(aVoid -> {
+                                Toast.makeText(SignUpActivity.this, "You have signed up successfully!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                            })
+                            .addOnFailureListener(e -> {
+                                Toast.makeText(SignUpActivity.this, "Failed to sign up: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                } else {
+                    Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
             }
         });
-
-
     }
-
 }

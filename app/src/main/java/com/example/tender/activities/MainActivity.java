@@ -18,7 +18,7 @@ import com.example.tender.adapters.ViewPagerAdapter;
 //import com.example.tender.models.TinderCard;
 import com.example.tender.fragments.AccountFragment;
 import com.example.tender.fragments.ChatFragment;
-import com.example.tender.fragments.FeedFragment;
+//import com.example.tender.fragments.FeedFragment;
 import com.example.tender.fragments.SwipeViewFragment;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Fragment> fragList = new ArrayList<>();
         fragList.add(new SwipeViewFragment());
-        fragList.add(new FeedFragment());
+//        fragList.add(new FeedFragment());
         fragList.add(new ChatFragment());
         fragList.add(new AccountNavHostFragment());
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(fragList, getSupportFragmentManager());

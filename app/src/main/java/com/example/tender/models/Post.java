@@ -1,16 +1,26 @@
 package com.example.tender.models;
 
-import android.net.Uri;
-
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Post {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String user) {
+        this.username = username;
+    }
+
+    private  String username;
     private String title;
     private StringBuilder message;
     private String imageUrl;
     private Date timestamp;
 
-    public Post(String title, StringBuilder message, String imageUrl, Date timestamp) {
+    public Post(String username, String title, StringBuilder message, String imageUrl, Date timestamp) {
+        this.username = username;
         this.title = title;
         this.message = message;
         this.imageUrl = imageUrl;
@@ -47,5 +57,15 @@ public class Post {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Map<String, Object> toJson() {
+        Map<String, Object> postData = new HashMap<>();
+        postData.put("username", username);
+        postData.put("title", title);
+        postData.put("message", message.toString());
+        postData.put("imageUrl", imageUrl);
+        postData.put("timestamp", timestamp);
+        return postData;
     }
 }
