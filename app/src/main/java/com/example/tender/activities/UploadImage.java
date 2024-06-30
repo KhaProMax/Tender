@@ -104,6 +104,14 @@ public class UploadImage extends AppCompatActivity {
                                     Intent intent = new Intent(UploadImage.this, RetrivePost.class);
                                     intent.putExtra("username", user);
                                     startActivity(intent);
+
+                                    // Clear the EditText fields
+                                    ETtitle.setText(null);
+                                    ETmessage.setText(null);
+
+                                    // Reset the imageUri
+                                    imageUri = null;
+                                    FirebaseImage.setImageURI(null);
                                 })
                                 .addOnFailureListener(e -> {
                                     Toast.makeText(UploadImage.this, "Failed to upload post: " + e.getMessage(), Toast.LENGTH_SHORT).show();

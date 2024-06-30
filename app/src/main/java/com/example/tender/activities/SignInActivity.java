@@ -95,7 +95,9 @@ public class SignInActivity extends AppCompatActivity {
                         String nameFromDB = snapshot.child(user).child("name").getValue(String.class);
                         String emailFromDB = snapshot.child(user).child("email").getValue(String.class);
                         String usernameFromDB = snapshot.child(user).child("username").getValue(String.class);
-                        Intent intent = new Intent(SignInActivity.this, UploadImage.class);
+
+                        //Set intent
+                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                         intent.putExtra("name", nameFromDB);
                         intent.putExtra("email", emailFromDB);
                         intent.putExtra("username", usernameFromDB);

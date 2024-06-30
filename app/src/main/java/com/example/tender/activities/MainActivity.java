@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.tender.fragments.AccountNavHostFragment;
+import com.example.tender.fragments.FeedFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.tender.R;
 //import com.example.tender.Utils;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Fragment> fragList = new ArrayList<>();
         fragList.add(new SwipeViewFragment());
-//        fragList.add(new FeedFragment());
+        fragList.add(new FeedFragment());
         fragList.add(new ChatFragment());
         fragList.add(new AccountNavHostFragment());
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(fragList, getSupportFragmentManager());
