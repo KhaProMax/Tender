@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/woman_0"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_toEndOf="@id/img_profile"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        >
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:start="@id/img_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_profile"
+            tools:ignore="NotSibling" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28 year old"
+            android:textColor="@color/md_grey_400"
+            android:textSize="12sp"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintStart_toEndOf="@+id/text_name"
+            app:layout_constraintBottom_toTopOf="@id/text_date"
+            android:id="@+id/text_age"/>
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2/4/2024"
+            android:textColor="@color/md_grey_400"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/text_name"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            tools:ignore="UnknownIdInLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_image_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_profile">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comment"/>
+
+    </RelativeLayout>
+</RelativeLayout>
+
