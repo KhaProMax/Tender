@@ -1,5 +1,7 @@
 package com.example.tender.fragments;
 
+import static android.content.Intent.getIntent;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,6 +34,7 @@ public class FeedFragment extends Fragment {
     FirebaseFirestore firestore;
     PostListAdapter postListAdapter;
     List<Post> list;
+    List<String> postIDList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class FeedFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = new ArrayList<>();
-        postListAdapter = new PostListAdapter(getContext(), list);
+        postListAdapter = new PostListAdapter(getContext(), list,postIDList);
         recyclerView.setAdapter(postListAdapter);
 
         firestore.collection("post")
@@ -60,6 +63,7 @@ public class FeedFragment extends Fragment {
                         list.clear();
                         for (QueryDocumentSnapshot document : snapshot) {
                             // Get the data from the document
+                            String postID = document.getId();
                             String username = document.getString("username");
                             String title = document.getString("title");
                             String message = document.getString("message");
@@ -69,6 +73,7 @@ public class FeedFragment extends Fragment {
                             // Create a new Post instance with the data
                             Post post = new Post(username, title, message, imageUrl, timestamp);
                             list.add(post);
+                            postIDList.add(postID);
                         }
                         postListAdapter.notifyDataSetChanged();
                     }

@@ -1,5 +1,6 @@
 package com.example.tender.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tender.R;
 import com.example.tender.adapters.CommentListAdapter;
 import com.example.tender.models.Comment;
+import com.example.tender.models.Post;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,6 +40,12 @@ public class CommentActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_comment);
+        btnReturn=findViewById(R.id.returnButton);
+        btnComment=findViewById(R.id.CommentButton);
+
+
+        String postID = getIntent().getStringExtra("postID");
+        btnReturn.setText(postID);
 
         recyclerView =findViewById(R.id.CommentRecyclerView);
         firestore = FirebaseFirestore.getInstance();
@@ -45,38 +53,34 @@ public class CommentActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(CommentActivity.this));
         list = new ArrayList<>();
         recyclerView.setAdapter(commentListAdapter);
-        String postID = getIntent().getStringExtra("postID");
+//
+//        firestore.collection("post").document(postID)
+//                .collection("comment")
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @SuppressLint("NotifyDataSetChanged")
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot snapshot,
+//                                        @Nullable FirebaseFirestoreException e) {
+//                        if (e != null) {
+//                            // Handle any errors
+//                            return;
+//                        }
+//
+//                        list.clear();
+//                        for (QueryDocumentSnapshot document : snapshot) {
+//                            // Get the data from the document
+//                            String username = document.getString("username");
+//                            String message = document.getString("message");
+//                            Date timestamp = document.getDate("timestamp");
+//
+//                            // Create a new Post instance with the data
+//                            Comment comment = new Comment(username, message, timestamp);
+//                            list.add(comment);
+//                        }
+//                        commentListAdapter.notifyDataSetChanged();
+//                    }
+//                });
 
-        assert postID != null;
-        firestore.collection("post")
-                .document(postID)
-                .collection("comment")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot snapshot,
-                                        @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            // Handle any errors
-                            return;
-                        }
-
-                        List<Comment> comments = new ArrayList<>();
-                        for (QueryDocumentSnapshot document : snapshot) {
-                            // Get the data from the document
-                            String username = document.getString("username");
-                            String message = document.getString("message");
-                            Date timestamp = document.getDate("timestamp");
-
-                            // Create a new Comment instance with the data
-                            Comment comment = new Comment(username, message, timestamp);
-                            comments.add(comment);
-                        }
-                        commentListAdapter.notifyDataSetChanged();
-                    }
-                });
-
-        btnReturn=findViewById(R.id.returnButton);
-        btnComment=findViewById(R.id.CommentButton);
 
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override

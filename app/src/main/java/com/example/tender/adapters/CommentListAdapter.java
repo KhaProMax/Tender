@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.models.Comment;
-import com.example.tender.models.Post;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,8 +49,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username, title, message,date;
-        ImageView imageView,profile;
+        TextView username, message,date;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,7 +57,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             username = itemView.findViewById(R.id.text_name);
             message = itemView.findViewById(R.id.message);
             date = itemView.findViewById(R.id.text_date);
-            profile=itemView.findViewById(R.id.profile_image);
         }
     }
 
