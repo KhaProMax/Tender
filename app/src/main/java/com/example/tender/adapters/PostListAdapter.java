@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tender.R;
 import com.example.tender.activities.CommentActivity;
 import com.example.tender.models.Post;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 
@@ -28,6 +30,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
     Context context;
     List<Post> list;
     List<String> postIDList;
+    private FirebaseFirestore firestore;
 
     public PostListAdapter(Context context, List<Post> list, List<String> postIDList) {
         this.context = context;
@@ -52,19 +55,22 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
         messageBuilder.append(post.getMessage());
         holder.message.setText(messageBuilder.toString());
         holder.date.setText(post.getTimestamp().toString());
+        holder.likeCount.setText(String.valueOf(post.getLikecount()));
 
         Picasso.get()
                 .load(post.getImageUrl())
                 .into(holder.imageView);
 
-        holder.imgChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the CommentActivity
-                Intent intent = new Intent(context, CommentActivity.class);
-                intent.putExtra("postID",postIDList.get(position));
-                context.startActivity(intent);
-            }
+        holder.imgChat.setOnClickListener(v -> {
+            // Start the CommentActivity
+            Intent intent = new Intent(context, CommentActivity.class);
+            intent.putExtra("postID", postIDList.get(position));
+            context.startActivity(intent);
+        });
+
+        holder.likeCount.setOnClickListener(v -> {
+            String postId = postIDList.get(position);
+            incrementLikeCount(postId, post, holder, 1);
         });
     }
 
@@ -74,7 +80,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView username, title, message, date;
+        TextView username, title, message, date, likeCount;
         ImageView imageView, profile, imgChat;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -87,6 +93,23 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             imageView = itemView.findViewById(R.id.img_content);
             profile = itemView.findViewById(R.id.profile_image);
             imgChat = itemView.findViewById(R.id.img_chat);
+            likeCount = itemView.findViewById(R.id.like_count);
         }
+    }
+
+    private void incrementLikeCount(String postId, Post post, MyViewHolder holder, int incrementBy) {
+        firestore.collection("post")
+                .document(postId)
+                .update("likeCount", FieldValue.increment(incrementBy))
+                .addOnSuccessListener(aVoid -> {
+                    // Likecount updated successfully
+                    // Update the UI to reflect the new like count
+                    Long newLikeCount = post.getLikecount() + incrementBy;
+                    holder.likeCount.setText(String.valueOf(newLikeCount));
+                })
+                .addOnFailureListener(e -> {
+                    // Handle error
+                    Log.e(TAG, "Error updating like count: " + e.getMessage());
+                });
     }
 }

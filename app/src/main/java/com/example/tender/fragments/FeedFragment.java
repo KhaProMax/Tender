@@ -69,9 +69,10 @@ public class FeedFragment extends Fragment {
                             String message = document.getString("message");
                             String imageUrl = document.getString("imageUrl");
                             Date timestamp = document.getDate("timestamp");
+                            Long likeCount = document.getLong("likeCount");
 
                             // Create a new Post instance with the data
-                            Post post = new Post(username, title, message, imageUrl, timestamp);
+                            Post post = new Post(username, title, message, imageUrl, timestamp,likeCount );
                             list.add(post);
                             postIDList.add(postID);
                         }

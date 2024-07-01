@@ -13,6 +13,8 @@ public class Post {
     private String imageUrl;
     private Date timestamp;
 
+    private Long likecount;
+
     public Post(){}
 
     public Post(String username, String title, String message, String imageUrl, Date timestamp) {
@@ -21,6 +23,15 @@ public class Post {
         this.message = message;
         this.imageUrl = imageUrl;
         this.timestamp = timestamp;
+    }
+
+    public Post(String username, String title, String message, String imageUrl, Date timestamp, Long likecount) {
+        this.username = username;
+        this.title = title;
+        this.message = message;
+        this.imageUrl = imageUrl;
+        this.timestamp = timestamp;
+        this.likecount=likecount;
     }
 
     public String getUsername() {
@@ -60,6 +71,14 @@ public class Post {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Long getLikecount() {
+        return likecount;
+    }
+
+    public void setLikecount(Long likecount) {
+        this.likecount = likecount;
     }
 
     public Map<String, Object> toJson() {
