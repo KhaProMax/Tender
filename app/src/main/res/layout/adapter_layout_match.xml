@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/img_profile"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="5dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/woman_0" />
+        android:src="@drawable/woman_0"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -27,9 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
-            android:textColor="@color/md_grey_800"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:start="@id/img_profile"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_profile"
@@ -53,22 +53,10 @@
             android:layout_height="wrap_content"
             android:text="2/4/2024"
             android:textColor="@color/md_grey_400"
-            android:textSize="14sp"
+            android:textSize="10sp"
             app:layout_constraintTop_toBottomOf="@+id/text_name"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintBottom_toTopOf="@id/title"
             tools:ignore="UnknownIdInLayout" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/title"
-            app:layout_constraintStart_toEndOf="@id/img_profile"
-            app:layout_constraintTop_toBottomOf="@id/text_date"
-            android:text="Title"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="NotSibling" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

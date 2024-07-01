@@ -15,61 +15,9 @@ import com.example.tender.adapters.PostListAdapter;
 import com.example.tender.models.Post;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-//public class FeedFragment extends Fragment {
-//
-//    View rootLayout;
-//    private static final String TAG = MainActivity.class.getSimpleName();
-//    private List<Post> postList;
-//    private PostListAdapter mAdapter;
-//    private String[] matchDates = {"3/4/2020", "3/4/2020", "3/4/2020", "3/4/2020", "3/4/2020"};
-//    private int[] matchPictures = {R.drawable.cat, R.drawable.cat, R.drawable.cat, R.drawable.cat , R.drawable.cat};
-//    private String[] matchNames = {"Jessica1", "Jessica2", "Jessica3", "Jessica4", "Jessica5"};
-//    private String[] matchLocations = {"Da Nang: 3 km", "Da Nang: 18 km", "Hoi An: kilometre", "HCM: 4 km", "HCM: 6 km"};
-//
-//
-//    public FeedFragment() {
-//        // Required empty public constructor
-//    }
-//
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        rootLayout = inflater.inflate(R.layout.fragment_feed, container, false);
-//
-//
-//        RecyclerView recyclerView = rootLayout.findViewById(R.id.recycler_view_matchs);
-//        postList = new ArrayList<>();
-//        mAdapter = new PostListAdapter(getContext(), postList);
-//
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-//        recyclerView.setLayoutManager(mLayoutManager);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        //recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-//        recyclerView.setAdapter(mAdapter);
-//
-//        prepareMatchList();
-//
-//        return rootLayout;
-//    }
-//
-//
-//    private void prepareMatchList(){
-//
-//        Random rand = new Random();
-//        int id = rand.nextInt(100);
-//        int i;
-//        for(i=0; i<5; i++) {
-//            Post post = new Match(id, matchNames[i], matchPictures[i], matchLocations[i], matchDates[i]);
-//            postList.add(post);
-//        }
-//    }
-//
-//
-//}
 
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.firestore.EventListener;
@@ -98,7 +46,7 @@ public class FeedFragment extends Fragment {
         postListAdapter = new PostListAdapter(getContext(), list);
         recyclerView.setAdapter(postListAdapter);
 
-        firestore.collection("posts")
+        firestore.collection("post")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
@@ -111,7 +59,15 @@ public class FeedFragment extends Fragment {
 
                         list.clear();
                         for (QueryDocumentSnapshot document : snapshot) {
-                            Post post = document.toObject(Post.class);
+                            // Get the data from the document
+                            String username = document.getString("username");
+                            String title = document.getString("title");
+                            String message = document.getString("message");
+                            String imageUrl = document.getString("imageUrl");
+                            Date timestamp = document.getDate("timestamp");
+
+                            // Create a new Post instance with the data
+                            Post post = new Post(username, title, message, imageUrl, timestamp);
                             list.add(post);
                         }
                         postListAdapter.notifyDataSetChanged();

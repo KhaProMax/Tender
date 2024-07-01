@@ -5,21 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Post {
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String user) {
-        this.username = username;
-    }
 
     private  String username;
     private String title;
-    private StringBuilder message;
+    private String message;
     private String imageUrl;
     private Date timestamp;
 
-    public Post(String username, String title, StringBuilder message, String imageUrl, Date timestamp) {
+    public Post(){}
+
+    public Post(String username, String title, String message, String imageUrl, Date timestamp) {
         this.username = username;
         this.title = title;
         this.message = message;
@@ -27,6 +23,13 @@ public class Post {
         this.timestamp = timestamp;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String user) {
+        this.username = username;
+    }
     public String getTitle() {
         return title;
     }
@@ -35,11 +38,11 @@ public class Post {
         this.title = title;
     }
 
-    public StringBuilder getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(StringBuilder message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

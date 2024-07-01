@@ -1,6 +1,9 @@
 package com.example.tender.adapters;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,86 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tender.R;
 import com.example.tender.models.Post;
-import com.example.tender.models.User;
+import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyViewHolder> {
-
-//    private Context context;
-//    private List<Post> postList;
-//    private FirebaseFirestore db;
-//
-//    class MyViewHolder extends RecyclerView.ViewHolder {
-//        TextView name, date, location, age, message, title;
-//        ImageView imgProfile, imgContent;
-//
-//        MyViewHolder(View view) {
-//            super(view);
-//            name = view.findViewById(R.id.text_name);
-//            date = view.findViewById(R.id.text_date);
-////            location = view.findViewById(R.id.text_location);
-////            age = view.findViewById(R.id.text_age);
-//            imgProfile = view.findViewById(R.id.img_profile);
-//            title = view.findViewById(R.id.title);
-//            message = view.findViewById(R.id.messasge);
-//            imgContent = view.findViewById(R.id.img_content);
-//        }
-//    }
-//
-//    public PostListAdapter(Context context, List<Post> postList) {
-//        this.context = context;
-//        this.postList = postList;
-//        this.db = FirebaseFirestore.getInstance();
-//    }
-//
-//    @Override
-//    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View itemView = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.adapter_layout_match, parent, false);
-//
-//        return new MyViewHolder(itemView);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(MyViewHolder holder, final int position) {
-//        final Post post = postList.get(position);
-//        final String username = post.getUsername();
-//
-//        // Retrieve the user data from the Firestore database
-//        db.collection("users").document(username).get();
-//
-//        // Change format for timestamp before display
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-//        String formattedDate = outputFormat.format(post.getTimestamp());
-//        holder.date.setText(formattedDate);
-//        holder.title.setText(post.getTitle());
-//        holder.message.setText(post.getMessage());
-////        holder.location.setText(post.getTitle());
-//
-//        File localImage = null;
-//        try {
-//            localImage = File.createTempFile("temp", "jpg");
-//            Bitmap bitmap = BitmapFactory.decodeFile(localImage.getAbsolutePath());
-//            // rotate image 90 degree
-//            int rotation = getImageRotation(localImage.getAbsolutePath());
-//            Matrix matrix = new Matrix();
-//            matrix.postRotate(rotation);
-//            Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-//
-//            holder.imgContent.setImageBitmap(rotatedBitmap);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return postList.size();
-//    }
-
     Context context;
-
     List<Post> list;
 
 
@@ -112,12 +42,20 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
 
         Post post = list.get(position);
         holder.username.setText(post.getUsername());
-        holder.title.setText(post.getTitle());
-        holder.message.setText(post.getMessage());
-//        holder.date.setDate(post.getTimestamp());
-//        holder.imageView.setText(post.getAge());
+        StringBuilder messageBuilder = new StringBuilder();
+        messageBuilder.append(post.getTitle());
+        messageBuilder.append("\n");
+        messageBuilder.append(post.getMessage());
+        holder.message.setText(messageBuilder.toString());
+        holder.date.setText(post.getTimestamp().toString());
 
+        Picasso.get()
+                .load(post.getImageUrl())
+                .into(holder.imageView);
 
+//        Picasso.get()
+//                .load(null)
+//                .into(holder.profile);
     }
 
     @Override
@@ -128,7 +66,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView username, title, message,date;
-        ImageView imageView;
+        ImageView imageView,profile;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,9 +76,9 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.MyView
             message = itemView.findViewById(R.id.message);
             date = itemView.findViewById(R.id.text_date);
             imageView = itemView.findViewById(R.id.img_content);
+            profile=itemView.findViewById(R.id.profile_image);
 
         }
     }
-
 
 }

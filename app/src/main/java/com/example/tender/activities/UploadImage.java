@@ -88,7 +88,7 @@ public class UploadImage extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         String title = ETtitle.getText().toString();
-                        StringBuilder message = new StringBuilder(ETmessage.getText().toString());
+                        String message = ETmessage.getText().toString();
                         String user = TVuser.getText().toString();
 
                         // Generate a unique document ID for the post
